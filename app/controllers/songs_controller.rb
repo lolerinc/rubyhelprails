@@ -10,6 +10,12 @@ class SongsController < ApplicationController
   # GET /songs/1
   # GET /songs/1.json
   def show
+      @song = Song.find(params[:id])
+      @album = Album.find(@song.album_id)
+        rescue ActiveRecord::RecordNotFound 
+        flash[:notice] = 'That artist no longer exists'
+        redirect_to :action => :index
+        return
   end
 
   # GET /songs/new

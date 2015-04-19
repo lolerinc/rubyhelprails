@@ -10,6 +10,13 @@ class ArtistsController < ApplicationController
   # GET /artists/1
   # GET /artists/1.json
   def show
+      @artist = Artist.find(params[:id])
+      @albums = @artist.albums
+        rescue ActiveRecord::RecordNotFound 
+        flash[:notice] = 'error exists'
+        redirect_to :action => :index
+        return
+        
   end
 
   # GET /artists/new

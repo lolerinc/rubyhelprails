@@ -5,11 +5,24 @@ class AlbumsController < ApplicationController
   # GET /albums.json
   def index
     @albums = Album.all
+    #@album = albums.Album.find(params[:id])
+    #@artist = Artist.find(@albums.album.artist_id)
   end
 
   # GET /albums/1
   # GET /albums/1.json
   def show
+      @album = Album.find(params[:id])
+      @artist = Artist.find(@album.artist_id)
+      @songs = @album.songs
+        rescue ActiveRecord::RecordNotFound 
+        flash[:notice] = 'That artist no longer exists'
+        redirect_to :action => :index
+        return
+      #@song = Song.find(params[:id])
+      #@album2 = Album.find(@song.album_id)
+
+
   end
 
   # GET /albums/new

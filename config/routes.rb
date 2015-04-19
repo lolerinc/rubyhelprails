@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :class_gs
+
   resources :libraries
 
   resources :genres

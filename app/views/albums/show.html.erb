@@ -7,13 +7,40 @@
 
 <p>
   <strong>Artist:</strong>
-  <%= @album.artist_id %>
+  <%= @artist.name %>
 </p>
 
 <p>
   <strong>Year:</strong>
   <%= @album.year %>
 </p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Title</th>
+      <th>Album</th>
+      <th>Length</th>
+      <th>Composer</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @songs.each do |song| %>
+      <tr>
+        <td><%= song.title %></td>
+        <td><%= song.length %></td>
+        <td><%= song.composer %></td>
+        <td><%= link_to 'Show', song %></td>
+        <td><%= link_to 'Edit', edit_song_path(song) %></td>
+        <td><%= link_to 'Destroy', song, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
 
 <%= link_to 'Edit', edit_album_path(@album) %> |
 <%= link_to 'Back', albums_path %>
